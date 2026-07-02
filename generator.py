@@ -14,6 +14,7 @@ class ReliefFeatures:
     cells: list[tuple[int, int, float, str]]
     background: str
     accent: str
+    density: float
     seed_value: int
 
 
@@ -41,7 +42,7 @@ def _fallback(stem: str, seed: int) -> ReliefFeatures:
             if v % 10 < 5:
                 color = f"0x{(v >> 16) & 255:02x}{(v >> 8) & 255:02x}{v & 255:02x}"
                 cells.append((x, y, 0.35 + (v % 100) / 200, color))
-    return ReliefFeatures(cells[:22], "0x30343b", "0xd8d4c8", base)
+    return ReliefFeatures(cells[:22], "0x30343b", "0xd8d4c8", 0.45, base)
 
 
 def extract_features(stem: str, image_url: str, seed: int) -> ReliefFeatures:
@@ -68,6 +69,7 @@ def extract_features(stem: str, image_url: str, seed: int) -> ReliefFeatures:
         cells=cells[:36],
         background=_hex(np.percentile(flat, 20, axis=0)),
         accent=_hex(np.percentile(flat, 82, axis=0)),
+        density=min(1.0, len(cells) / 81.0),
         seed_value=_stable_int(stem, seed),
     )
 
