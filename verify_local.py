@@ -12,10 +12,14 @@ def main() -> None:
     assert "Math.random" not in generator
     assert "Date" not in generator
     assert "new THREE.BoxGeometry" in generator
+    assert "density" in generator
+    assert "contrast" in generator
+    assert "salience" in generator
     assert "@app.get(\"/health\")" in service
     assert "@app.get(\"/status\")" in service
     assert "@app.post(\"/generate\")" in service
     assert "@app.get(\"/results\")" in service
+    assert "prompts must not be empty" in service
     assert "EXPOSE 10006" in dockerfile
     print("ok")
 
