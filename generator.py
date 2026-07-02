@@ -89,7 +89,7 @@ def build_module(stem: str, image_url: str, seed: int) -> str:
             f"  addCell({px:.4f}, {py:.4f}, {depth:.4f}, {scale:.4f}, {color});"
         )
     cells_js = "\n".join(cell_lines) or "  addCell(0, 0, 0.08, 0.12, 0xcccccc);"
-    ring = 0.43
+    ring = 0.42 + f.density * 0.035
     return f"""export default function generate(THREE) {{
   const group = new THREE.Group();
   const backMat = new THREE.MeshStandardMaterial({{ color: {f.background}, roughness: 0.86, metalness: 0.01 }});
