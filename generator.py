@@ -62,7 +62,8 @@ def extract_features(stem: str, image_url: str, seed: int) -> ReliefFeatures:
     for y in range(9):
         for x in range(9):
             if salience[y, x] >= threshold:
-                height = 0.18 + min(0.72, float(salience[y, x]) * 1.9)
+                local = float(salience[y, x])
+                height = 0.16 + min(0.76, local * (1.7 + float(np.std(lum)) * 1.2))
                 cells.append((x, y, height, _hex(arr[y, x])))
     cells.sort(key=lambda item: item[2], reverse=True)
     flat = arr.reshape(-1, 3)
