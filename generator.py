@@ -57,7 +57,7 @@ def extract_features(stem: str, image_url: str, seed: int) -> ReliefFeatures:
     lum = (arr[:, :, 0] * 0.2126 + arr[:, :, 1] * 0.7152 + arr[:, :, 2] * 0.0722) / 255.0
     gy, gx = np.gradient(lum)
     salience = np.abs(gx) + np.abs(gy) + np.abs(lum - float(np.mean(lum))) * 0.7
-    threshold = float(np.quantile(salience, 0.58))
+    threshold = float(np.quantile(salience, 0.54 + min(0.12, float(np.std(lum)) * 0.35)))
     cells: list[tuple[int, int, float, str]] = []
     for y in range(9):
         for x in range(9):
