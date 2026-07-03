@@ -84,7 +84,7 @@ def build_module(stem: str, image_url: str, seed: int) -> str:
         px = (x - 4.5) * 0.082
         py = (4.5 - y) * 0.082
         depth = 0.035 + height * 0.075
-        scale = 0.040 + min(0.020, height * (0.016 + f.contrast * 0.020))
+        scale = 0.038 + min(0.024, height * (0.016 + f.contrast * 0.024))
         cell_lines.append(
             f"  addCell({px:.4f}, {py:.4f}, {depth:.4f}, {scale:.4f}, {color});"
         )
