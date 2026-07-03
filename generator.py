@@ -71,7 +71,7 @@ def extract_features(stem: str, image_url: str, seed: int) -> ReliefFeatures:
         cells=cells[:36],
         background=_hex(np.percentile(flat, 20, axis=0)),
         accent=_hex(np.percentile(flat, 82, axis=0)),
-        density=min(1.0, len(cells) / 81.0),
+        density=min(1.0, len(cells) / 100.0),
         contrast=float(np.std(lum)),
         seed_value=_stable_int(stem, seed),
     )
