@@ -15,6 +15,8 @@ def main() -> None:
     assert "density" in generator
     assert "contrast" in generator
     assert "salience" in generator
+    assert "panel_z" in generator
+    assert "batch_size" in service
     assert "@app.get(\"/health\")" in service
     assert "@app.get(\"/status\")" in service
     assert "@app.post(\"/generate\")" in service
