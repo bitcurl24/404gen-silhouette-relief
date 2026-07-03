@@ -81,8 +81,8 @@ def build_module(stem: str, image_url: str, seed: int) -> str:
     f = extract_features(stem, image_url, seed)
     cell_lines = []
     for x, y, height, color in f.cells:
-        px = (x - 4) * 0.09
-        py = (4 - y) * 0.09
+        px = (x - 4.5) * 0.082
+        py = (4.5 - y) * 0.082
         depth = 0.035 + height * 0.075
         scale = 0.040 + min(0.020, height * (0.016 + f.contrast * 0.020))
         cell_lines.append(
