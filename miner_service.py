@@ -51,7 +51,11 @@ def status(replacements_remaining: int = 0) -> JSONResponse:
             "status": state.status,
             "progress": state.progress if state.status == "generating" else None,
             "total": state.total if state.status == "generating" else None,
-            "payload": {"strategy": "silhouette-relief", "replacements_remaining": replacements_remaining},
+            "payload": {
+                "strategy": "silhouette-relief",
+                "batch_size": state.total,
+                "replacements_remaining": replacements_remaining,
+            },
         })
 
 
