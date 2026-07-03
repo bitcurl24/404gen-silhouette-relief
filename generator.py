@@ -90,12 +90,13 @@ def build_module(stem: str, image_url: str, seed: int) -> str:
         )
     cells_js = "\n".join(cell_lines) or "  addCell(0, 0, 0.08, 0.12, 0xcccccc);"
     ring = 0.42 + f.density * 0.035
+    panel_z = -0.058 - f.density * 0.012
     return f"""export default function generate(THREE) {{
   const group = new THREE.Group();
   const backMat = new THREE.MeshStandardMaterial({{ color: {f.background}, roughness: 0.86, metalness: 0.01 }});
   const accentMat = new THREE.MeshStandardMaterial({{ color: {f.accent}, roughness: 0.55, metalness: 0.02 }});
   const panel = new THREE.Mesh(new THREE.BoxGeometry(0.88, 0.88, 0.025), backMat);
-  panel.position.z = -0.055;
+  panel.position.z = {panel_z:.4f};
   group.add(panel);
   function addCell(x, y, z, s, color) {{
     const mat = new THREE.MeshStandardMaterial({{ color: color, roughness: 0.68, metalness: 0.01 }});
